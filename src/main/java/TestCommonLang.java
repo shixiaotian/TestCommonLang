@@ -1,8 +1,10 @@
 
+import bean.Cat;
 import event.CatEvent;
 import event.CatListener;
 import event.Listener;
 import org.apache.commons.lang3.*;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.event.EventUtils;
 import org.apache.commons.lang3.mutable.MutableInt;
 import org.apache.commons.lang3.time.StopWatch;
@@ -48,8 +50,10 @@ public class TestCommonLang {
 //        TestCommonLang.mutableInt();
 
         // IDKey
-        TestCommonLang.idKey();
+//        TestCommonLang.idKey();
 
+        // toStringBuilder
+        TestCommonLang.toStringBuilder();
     }
 
     // 序列化
@@ -184,6 +188,15 @@ public class TestCommonLang {
 //        IDKey idkey = new IDKey;
 
         System.out.println(System.identityHashCode("123"));
+
+    }
+
+    // ToStringBuilder 输出对象属性值 相当于 toString
+    private static void toStringBuilder() {
+
+        Cat cat = new Cat(1l, "tomcat");
+
+        System.out.println(ToStringBuilder.reflectionToString(cat));
 
     }
 }
