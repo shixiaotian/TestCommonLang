@@ -1,16 +1,12 @@
 
-import concurrent.MyReentrantLock;
-import concurrent.TestReentrantLock;
 import event.CatEvent;
 import event.CatListener;
 import event.Listener;
 import org.apache.commons.lang3.*;
 import org.apache.commons.lang3.event.EventUtils;
+import org.apache.commons.lang3.mutable.MutableInt;
 import org.apache.commons.lang3.time.StopWatch;
 import org.apache.commons.lang3.tuple.Triple;
-
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 /**
  *
@@ -41,12 +37,19 @@ public class TestCommonLang {
 //        TestCommonLang.eventUtils();
 
         // concurrent 线程锁 ReentrantLock
-        ExecutorService service= Executors.newCachedThreadPool();
-        TestReentrantLock lock=new TestReentrantLock();
-        for(int i=0;i<10;i++){
-            service.submit(new MyReentrantLock(i,lock));
-        }
-        service.shutdown();
+//        ExecutorService service= Executors.newCachedThreadPool();
+//        TestReentrantLock lock=new TestReentrantLock();
+//        for(int i=0;i<10;i++){
+//            service.submit(new MyReentrantLock(i,lock));
+//        }
+//        service.shutdown();
+
+        // MutableInt
+//        TestCommonLang.mutableInt();
+
+        // IDKey
+        TestCommonLang.idKey();
+
     }
 
     // 序列化
@@ -160,4 +163,27 @@ public class TestCommonLang {
         EventUtils.addEventListener(catEvent, Listener.class, catListener);
     }
 
+    // mutableint
+    private static void mutableInt() {
+
+        MutableInt mutableInt = new MutableInt();
+
+        mutableInt.add(1);
+        mutableInt.add(2);
+        mutableInt.add(3);
+        mutableInt.decrement();
+
+        System.out.println(mutableInt.intValue());
+
+    }
+
+    // IDKey
+    private static void idKey() {
+
+        // 不能使用,日狗
+//        IDKey idkey = new IDKey;
+
+        System.out.println(System.identityHashCode("123"));
+
+    }
 }
